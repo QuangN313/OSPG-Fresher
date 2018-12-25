@@ -1,6 +1,6 @@
 .idea
 .vscode
-.*
+*
 Pipfile
 Pipfile.lock
 
