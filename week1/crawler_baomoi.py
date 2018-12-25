@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from queue import Queue, Empty
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urljoin, urlparse
-import re
 import csv
 import json
 from elasticsearch import Elasticsearch
@@ -105,17 +104,17 @@ class Spider:
             if self.count == 100:
                 run_time = time.time() - start_time
                 with open('report.txt', 'w') as f:
-                    f.writelines(f'Time: {run_time}')
+                    f.writelines(f'Time: {run_time / 60} min')
 
         else:
             return
 
-    @staticmethod
-    def convert_price(string, index):
-        string = re.sub(r"\D", "", string)
-        value = int(float(string))
-        value = value * int(float(scale_list[index]))
-        return value
+    # @staticmethod
+    # def convert_price(string, index):
+    #     string = re.sub(r"\D", "", string)
+    #     value = int(float(string))
+    #     value = value * int(float(scale_list[index]))
+    #     return value
 
     def post_scrape_callback(self, res):
         result = res.result()
@@ -130,8 +129,6 @@ class Spider:
             try:
                 target_url = self.to_crawler.get()
                 print('Crawler ...')
-                # print(self.to_crawler.qsize())
-                # print(target_url)
                 if target_url not in self.crawler:
                     self.crawler.add(target_url)
                     job = self.pool.submit(self.request_page, target_url)

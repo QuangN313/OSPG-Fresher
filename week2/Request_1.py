@@ -6,7 +6,7 @@ import csv
 def search():
     es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
-    with open('Top_20_tag.csv', 'w') as f:
+    with open('Top_20_tag_.csv', 'w', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=tags_list)
         writer.writeheader()
 
@@ -46,10 +46,17 @@ def search():
                 # Get the number of results
                 scroll_size = len(page['hits']['hits'])
             for item in cnt.most_common(20):
-                writer.writerow({tag: str(item)})
+                writer.writerow({tag: str(item[0]), "Values": item[1]})
 
 
 if __name__ == '__main__':
-    tags_list = ["Xã hội", "Thế giới", "Văn hóa", "Kinh tế", "Giáo dục", "Pháp luật", "Thể thao", "Giải trí"]
+    tags_list = ["Xã hội", "Values",
+                 "Thế giới", "Values",
+                 "Văn hóa", "Values",
+                 "Kinh tế", "Values",
+                 "Giáo dục", "Values",
+                 "Pháp luật", "Values",
+                 "Thể thao", "Values",
+                 "Giải trí", "Values", ]
     search()
     print('Done!')

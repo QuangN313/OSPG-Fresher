@@ -1,10 +1,10 @@
-
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import csv
 import re
 from datetime import datetime
+
 
 def test_parse_product(seed_url):
 
