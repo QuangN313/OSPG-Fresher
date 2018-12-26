@@ -1,0 +1,41 @@
+Kỹ thuật phân tích và tiền xử lý số liệu sử dụng pandas 
+
+Trong bài tập này, các bạn sẽ được làm quen với việc phân tích và tiền xử lý dữ liệu thông qua việc tập dữ liệu bệnh tiểu đường (được đính kèm trong file diabetes.csv).
+
+Thông tin chi tiết về tập dữ liệu tham khảo tại https://www.kaggle.com/uciml/pima-indians-diabetes-database
+
+Trả lời các câu hỏi: 
+
+(1) Dữ liệu này gồm bao nhiêu trường, ý nghĩa các trường
+Dữ liệu gồm 9 trường 
+- Pregnancies: số lần mang thai
+- Glucose: nồng độ glucose trong huyết tương
+- BloodPressure: huyết áp tâm trương (mmHg)
+- SkinThickness: độ dày của da tại cơ tam đầu (mm)
+- Insulin: lượng insulin tiêm vào trong 2 giờ
+- BMI : chỉ số BMI
+- DiabetesPedigreeFunction: nguy cơ di truyền bệnh tiểu đường dựa trên dữ liệu về lịch sử tiểu đường ở người thân họ hàng
+- Age: tuổi
+- Outcome: kết quả ( 0: TH không bị tiểu đường, 1: TH có bị tiểu đường)
+(2) Dữ liệu này gồm bao nhiêu hàng
+Dữ liệu gồm 768 hàng 
+(3) Tính giá trị min, max, std của mỗi trường 
+		      Min	    Max	 	   std		Outcome(Corr)
+- Pregnacies       0.000000 	17.000000	3.369578 	0.221898
+- Glucose          0.000000	199.000000	31.972618	0.466581
+- BloodPressure    0.000000	122.000000	19.355807	0.065068
+- SkinThickness	   0.000000	99.000000	15.952218	0.074752
+- Insulin	   0.000000	846.000000	115.244002	0.130548
+- BMI		   0.000000	67.100000	7.884160	0.292695
+- DiabetesPediFu   0.078000	2.420000	0.331329	0.173844
+- Age		   21.000000	81.000000	11.760232	0.238356
+- Outcome	   0.000000	1.000000	0.476951	1
+(4) Phân tích mật độ dữ liệu, vẽ biểu đồ historgram của mỗi trường 
+(5) Phân tích tương quan (correlation) giữa các biến
+Chỉ số nào quyết định nhiều nhất đến Trường nào tương quan nhiều nhất với trường Outcome 
+(5) Xử lý dữ liệu missing (nếu có) ở mỗi trường, theo các phương pháp loại bỏ hoặc thay thế (theo giá trị min, max, mean tương ứng)
+Các trường bị missing: Glucose, BloodPressure, SkinThickness, BMI
+(6) Chuẩn hóa dữ liệu: Áp dụng phương pháp z-normalization và min-max normalization để chuẩn hóa dữ liệu các trường
+(7) Binning dữ liệu:  Chia giá trị của trường Age thành các khoảng 10 tuổi (21-31, 31-41, ..., 71-81)
+(8) Chuyển dữ liệu từ multi value thành multi column, thêm các trường age_x_y (với (x,y) = (21, 31), (31, 41), ... (71,81)).
+Giá trị của trường age_x_y bằng 1 nếu x <= Age <= y, bằng 0 trong các trường hợp còn lại 
